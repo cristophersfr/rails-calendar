@@ -1,32 +1,53 @@
-CS 270 Assignment 9
-===================
+CS 270 Assignment 10
+====================
 
-In this assignment, we will begin creating a new Rails application that serves as
-an Event Calendar for events and users.
-
-Step 0
-------
-Create a new Rails app; you can either create a new one in a different directory, 
-or you may specify to create your app in the current directory.
+In this assignment, we will create the Calendar functionality to display a monthly
+calendar along with events.
 
 Step 1
 ------
-Generate the models for events and users as follows:
-
-* an Event has a name, location, start time, and end time
-* a User has a name and email
-
-Remember to migrate the database after creating these models.
+Modify the calendar migration to include a month and year fields as a string. Make
+sure to drop the database and migrate it again.
 
 Step 2
 ------
-Create a `has_and_belongs_to_many` assocation between events and users.  Remember
-to generate the appropriate migration for the join table, and then do not forget
-to migrate the database after you have done so.
+Create a controller action for calendars called `show`. In this controller, the
+logic for displaying a calendar is as follows:
 
-You can use scaffolding to do the above tasks...
+* if there are no params for month and year, create a new calendar object with
+  the current day's month and year
+* otherwise, create a new calendar object with the month and year params
 
 Step 3
 ------
-Generate an "empty" Calendar model and controller.  Do not worry about creating 
-views for the calendar; we will take care of that in the next phase.
+Create a view file for the calendar controller show action.
+
+First, let's make the view display calendar days in monthly format.  The logic
+should look something like this:
+
+    for each calendar week
+        for each day of that week
+            display the day of the month
+            
+There are obviously more details to be filled in here, and it's left as an exercise
+for you to figure it out...
+
+Step 4
+------
+Write the code in the model to make the above work; I recommend the following:
+
+* create a class variable that is an array of the days of the week
+* you'll need to create a pseudo-constructor by using the after_initialize method
+
+For the core model functionality, consider the following:
+
+* The first date of a monthly calendar may not fall on the first day of the week. In
+  that case, you must 'count backwards' to find the first day of the week.
+* Same idea but in reverse for the last day of the month
+* Assuming you are going to display the calendar as an HTML table (good idea), remember
+  to generate a new row for each week
+
+Step 5
+------
+Add in a link for each day on the calendar for which an event occurs.  The logic
+of how to do this is left as an exercise...
