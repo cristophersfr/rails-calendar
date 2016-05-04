@@ -1,6 +1,11 @@
 CS 270 Assignment 10
 ====================
 
+Name: Cristopher De Sousa Freitas
+------
+
+Description: 
+
 In this assignment, we will create the Calendar functionality to display a monthly
 calendar along with events.
 
