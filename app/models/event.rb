@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   def self.find_by_date(date)
     events = []
     Event.all.each do |e|
-      if e.start_time.to_date == date
+      if e.start_time.to_date <= date and e.end_time.to_date >= date
         events.push(e)
       end
     end
